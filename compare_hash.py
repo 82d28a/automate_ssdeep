@@ -14,7 +14,7 @@ if __name__=="__main__":
             hash_store = hash_ssdeep.open_dict(sys.argv[1])
             for filepath in list_target_files:
                 file_hash = hash_ssdeep.fuzzy_hash_file(filepath)
-                hash_ssdeep.compare_hashs(file_hash, hash_store)
+                hash_ssdeep.compare_hashs(filepath, file_hash, hash_store)
         except IOError:
             print("{} File(s) or path are invalid.".format(list_target_files))
     else:
