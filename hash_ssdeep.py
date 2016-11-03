@@ -40,8 +40,10 @@ def dump_hash_file(type, store_dict):
             for filename in store_dict[hash]:
                 writefile.write('{},"{}"\n'.format(hash, filename))
 
-def compare_hashs(hash_a, dict_hashes):
+def compare_hashs(filename, hash_a, dict_hashes):
     for hash_b in dict_hashes:
         match_score = ssdeep.compare(hash_a, hash_b)
         if match_score > MIN_FLOOR_SIMILARITY_SCORE:
-            print("{}% match(s) to {}".format(match_score, ", ".join([file for file in dict_hashes[hash_b]])))
+            print("source file:{} match(s) {}% to {}".format(filename, 
+                                                             match_score, 
+                                                             ", ".join([file for file in dict_hashes[hash_b]])))
